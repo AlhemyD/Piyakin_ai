@@ -21,7 +21,7 @@ def draw_bbox(img, bbox, color=(0, 255, 0), thickness=2):
     return img
 
 class DrawingApp:
-    def __init__(self, model_path="shape_detector.keras", window_size=(128, 128)):
+    def __init__(self, model_path="shape_detector.keras", window_size=(640, 640)):
         self.window_size = window_size
         self.canvas = np.zeros((window_size[1], window_size[0], 3), dtype=np.uint8)
         self.drawing = False
@@ -46,7 +46,7 @@ class DrawingApp:
     def predict_shape(self):
         if np.sum(self.canvas) == 0:  # Если холст пустой
             return None
-        input_img = preprocess_image(self.  canvas)
+        input_img = preprocess_image(self.canvas)
         bbox = self.model.predict(input_img)[0]  # Предсказание bounding box
         return bbox
 
